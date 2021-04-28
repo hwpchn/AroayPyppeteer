@@ -21,13 +21,13 @@ with io.open(os.path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setuptools.setup(
     name="scrapy_pyppeteer",
-    version="1.1",
+    version="1.0",
     author="hwpchn",
     author_email="13692839895@163.com",
     description="scrapy的一个下载中间件，无缝对接pyppeteer",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/hwpchn/DaokePyppeteer.git",
+    url="https://github.com/hwpchn/ScapyPyppeteer.git",
     packages=setuptools.find_packages(),
     install_requires=REQUIRED,
     classifiers=[
