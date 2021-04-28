@@ -30,7 +30,7 @@ class PyppeteerRequest(Request):
         """
         # use meta info to save args
         meta = copy.deepcopy(meta) or {}
-        pyppeteer_meta = meta.get('daoke_pyppeteer') or {}
+        pyppeteer_meta = meta.get('scrapy_pyppeteer') or {}
 
         self.wait_until = pyppeteer_meta.get('wait_until') if pyppeteer_meta.get(
             'wait_until') is not None else (wait_until or 'domcontentloaded')
@@ -46,7 +46,7 @@ class PyppeteerRequest(Request):
         self.screenshot = pyppeteer_meta.get('screenshot') if pyppeteer_meta.get(
             'screenshot') is not None else screenshot
 
-        pyppeteer_meta = meta.setdefault('daoke_pyppeteer', {})
+        pyppeteer_meta = meta.setdefault('scrapy_pyppeteer', {})
         pyppeteer_meta['wait_until'] = self.wait_until
         pyppeteer_meta['wait_for'] = self.wait_for
         pyppeteer_meta['script'] = self.script

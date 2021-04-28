@@ -20,7 +20,7 @@ with io.open(os.path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = '\n' + f.read()
 
 setuptools.setup(
-    name="daoke_pyppeteer",
+    name="scrapy_pyppeteer",
     version="1.1",
     author="hwpchn",
     author_email="13692839895@163.com",
