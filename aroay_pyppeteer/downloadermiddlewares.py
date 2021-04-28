@@ -32,7 +32,7 @@ def as_deferred(f):
     return Deferred.fromFuture(asyncio.ensure_future(f))
 
 
-logger = logging.getLogger('aroay.aroay_pyppeteer')
+logger = logging.getLogger('daoke.aroay_pyppeteer')
 
 
 class PyppeteerMiddleware(object):
@@ -308,8 +308,15 @@ class PyppeteerMiddleware(object):
         # page.click
         if pyppeteer_meta.get('click'):
             _click = pyppeteer_meta.get('click')
-            logger.debug('evaluating %s', _click)
-            clickSeeAllWorkspaces = await page.waitForSelector(_click)
+            logger.debug('page.click(%s)', _click)
+            try:
+                logger.debug('waitForSelector %s', _click)
+                clickSeeAllWorkspaces = await page.waitForSelector(_click)
+            except TimeoutError:
+                logger.error('error waitForSelector %s of %s', _click, request.url)
+                await page.close()
+                await browser.close()
+                return self._retry(request, 504, spider)
             await clickSeeAllWorkspaces.click()
 
         # sleep

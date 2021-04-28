@@ -18,13 +18,13 @@ class PyppeteerRequest(Request):
         :param wait_for: wait for some element to load, also supports dict
         :param script: script to execute
         :param proxy: use proxy for this time, like `http://x.x.x.x:x`
-        :param sleep: time to sleep after loaded, override `GERAPY_PYPPETEER_SLEEP`
-        :param timeout: load timeout, override `GERAPY_PYPPETEER_DOWNLOAD_TIMEOUT`
-        :param ignore_resource_types: ignored resource types, override `GERAPY_PYPPETEER_IGNORE_RESOURCE_TYPES`
-        :param pretend: pretend as normal browser, override `GERAPY_PYPPETEER_PRETEND`
+        :param sleep: time to sleep after loaded, override `AROAY_PYPPETEER_SLEEP`
+        :param timeout: load timeout, override `AROAY_PYPPETEER_DOWNLOAD_TIMEOUT`
+        :param ignore_resource_types: ignored resource types, override `AROAY_PYPPETEER_IGNORE_RESOURCE_TYPES`
+        :param pretend: pretend as normal browser, override `AROAY_PYPPETEER_PRETEND`
         :param screenshot: ignored resource types, see
                 https://miyakogi.github.io/pyppeteer/_modules/pyppeteer/page.html#Page.screenshot,
-                override `GERAPY_PYPPETEER_SCREENSHOT`
+                override `AROAY_PYPPETEER_SCREENSHOT`
         :param args:
         :param kwargs:
         """
