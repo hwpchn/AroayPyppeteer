@@ -16,7 +16,7 @@ def start_requests(self):
 
 ```
 
-# DaokePyppeteer
+# ScrapyPyppeteer
 
 scrapy的一个下载中间件，无缝对接yppeteer
 
@@ -28,7 +28,7 @@ scrapy的一个下载中间件，无缝对接yppeteer
 DAOKE_ENABLE_REQUEST_INTERCEPTION = False
 ```
 
-# DaokePyppeteer
+# ScrapyPyppeteer
 
 scrapy的一个下载中间件，无缝对接yppeteer
 
@@ -38,7 +38,7 @@ pip3 install daoke-pyppeteer
 
 ```python
 DOWNLOADER_MIDDLEWARES = {
-    'daoke_pyppeteer.downloadermiddlewares.PyppeteerMiddleware': 543,
+    'scrapy_pyppeteer.downloadermiddlewares.PyppeteerMiddleware': 543,
 }
 ```
 
