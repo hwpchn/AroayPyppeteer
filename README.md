@@ -25,7 +25,7 @@ scrapy的一个下载中间件，无缝对接yppeteer
 在setting增加
 
 ```
-DAOKE_ENABLE_REQUEST_INTERCEPTION = False
+AROAY_ENABLE_REQUEST_INTERCEPTION = False
 ```
 
 # ScrapyPyppeteer
@@ -38,7 +38,7 @@ pip3 install daoke-pyppeteer
 
 ```python
 DOWNLOADER_MIDDLEWARES = {
-    'scrapy_pyppeteer.downloadermiddlewares.PyppeteerMiddleware': 543,
+    'aroay_pyppeteer.downloadermiddlewares.PyppeteerMiddleware': 543,
 }
 ```
 
@@ -46,12 +46,12 @@ DOWNLOADER_MIDDLEWARES = {
 
 ```python
 CONCURRENT_REQUESTS = 3
-GERAPY_PYPPETEER_PRETEND = False #默认为True,某些网站能检测无头或者webdriver驱动，需要开启
-GERAPY_PYPPETEER_HEADLESS = False #默认为True
-GERAPY_PYPPETEER_DOWNLOAD_TIMEOUT = 30 #默认渲染页面超时时间30s
+AROAY_PYPPETEER_PRETEND = False #默认为True,某些网站能检测无头或者webdriver驱动，需要开启
+AROAY_PYPPETEER_HEADLESS = False #默认为True
+AROAY_PYPPETEER_DOWNLOAD_TIMEOUT = 30 #默认渲染页面超时时间30s
 
 拦截请求
-GERAPY_PYPPETEER_IGNORE_RESOURCE_TYPES = ['stylesheet', 'script']
+AROAY_PYPPETEER_IGNORE_RESOURCE_TYPES = ['stylesheet', 'script']
 ```
 
 所有可选资源类型列表：
