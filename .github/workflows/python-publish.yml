@@ -1,39 +1,38 @@
-# This workflow will upload a Python Package using Twine when a release is created
-# For more information see: https://help.github.com/en/actions/language-and-framework-guides/using-python-with-github-actions#publishing-to-package-registries
+on: push
+  
+  # 当发布时，触发action
+  #release:
+  #  types: [created]
 
-name: Publish Python 🐍 distributions 📦 to PyPI
-
-on:
-  push
 
 jobs:
-  build-n-publish:
-    name: Build and publish Python 🐍 distributions 📦 to PyPI
-    runs-on: ubuntu-18.04
-    
-    steps:
-    - uses: actions/checkout@master
-    - name: Set up Python 3.9
-      uses: actions/setup-python@v1
-      with:
-        python-version: 3.9
-    - name: Install pypa/build
-      run: >-
-        python -m
-        pip install
-        build
-        --user
-    - name: Build a binary wheel and a source tarball
-      run: >-
-        python -m
-        build
-        --sdist
-        --wheel
-        --outdir dist/
-    - name: Publish distribution 📦 to PyPI
-      uses: pypa/gh-action-pypi-publish@master
-      with:
-        password: ${{ secrets.PYPI_API_TOKEN }}
-        verify_metadata: false
-        skip_existing: true
+  deploy:
+    name: publish python package to PYPI
+    # 此作业在 Linux 上运行
+    runs-on: ubuntu-latest
 
+    steps:
+    # 此步骤使用 GitHub 的 https://github.com/actions/checkout
+    - uses: actions/checkout@v2
+    
+    # 设置python环境
+    # 此步骤使用 GitHub 的 https://github.com/actions/setup-python
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x'
+    
+    # 安装依赖
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install setuptools wheel twine
+    
+    # 构建和发布
+    - name: Build and publish
+      env:
+        TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+        TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+      run: |
+        python setup.py sdist bdist_wheel
+        twine upload dist/*
