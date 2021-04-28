@@ -32,7 +32,7 @@ def as_deferred(f):
     return Deferred.fromFuture(asyncio.ensure_future(f))
 
 
-logger = logging.getLogger('daoke.aroay_pyppeteer')
+logger = logging.getLogger('aroay.aroay_pyppeteer')
 
 
 class PyppeteerMiddleware(object):
@@ -87,45 +87,45 @@ class PyppeteerMiddleware(object):
         :return:
         """
         settings = crawler.settings
-        logging_level = settings.get('DAOKE_PYPPETEER_LOGGING_LEVEL', DAOKE_PYPPETEER_LOGGING_LEVEL)
+        logging_level = settings.get('AROAY_PYPPETEER_LOGGING_LEVEL', AROAY_PYPPETEER_LOGGING_LEVEL)
         logging.getLogger('websockets').setLevel(logging_level)
         logging.getLogger('aroay_pyppeteer').setLevel(logging_level)
 
         # init settings
-        cls.window_width = settings.get('DAOKE_PYPPETEER_WINDOW_WIDTH', DAOKE_PYPPETEER_WINDOW_WIDTH)
-        cls.window_height = settings.get('DAOKE_PYPPETEER_WINDOW_HEIGHT', DAOKE_PYPPETEER_WINDOW_HEIGHT)
-        cls.default_user_agent = settings.get('DAOKE_PYPPETEER_DEFAULT_USER_AGENT',
-                                              DAOKE_PYPPETEER_DEFAULT_USER_AGENT)
-        cls.headless = settings.get('DAOKE_PYPPETEER_HEADLESS', DAOKE_PYPPETEER_HEADLESS)
-        cls.dumpio = settings.get('DAOKE_PYPPETEER_DUMPIO', DAOKE_PYPPETEER_DUMPIO)
-        cls.ignore_https_errors = settings.get('DAOKE_PYPPETEER_IGNORE_HTTPS_ERRORS',
-                                               DAOKE_PYPPETEER_IGNORE_HTTPS_ERRORS)
-        cls.slow_mo = settings.get('DAOKE_PYPPETEER_SLOW_MO', DAOKE_PYPPETEER_SLOW_MO)
-        cls.ignore_default_args = settings.get('DAOKE_PYPPETEER_IGNORE_DEFAULT_ARGS',
-                                               DAOKE_PYPPETEER_IGNORE_DEFAULT_ARGS)
-        cls.handle_sigint = settings.get('DAOKE_PYPPETEER_HANDLE_SIGINT', DAOKE_PYPPETEER_HANDLE_SIGINT)
-        cls.handle_sigterm = settings.get('DAOKE_PYPPETEER_HANDLE_SIGTERM', DAOKE_PYPPETEER_HANDLE_SIGTERM)
-        cls.handle_sighup = settings.get('DAOKE_PYPPETEER_HANDLE_SIGHUP', DAOKE_PYPPETEER_HANDLE_SIGHUP)
-        cls.auto_close = settings.get('DAOKE_PYPPETEER_AUTO_CLOSE', DAOKE_PYPPETEER_AUTO_CLOSE)
-        cls.devtools = settings.get('DAOKE_PYPPETEER_DEVTOOLS', DAOKE_PYPPETEER_DEVTOOLS)
-        cls.executable_path = settings.get('DAOKE_PYPPETEER_EXECUTABLE_PATH', DAOKE_PYPPETEER_EXECUTABLE_PATH)
-        cls.disable_extensions = settings.get('DAOKE_PYPPETEER_DISABLE_EXTENSIONS',
-                                              DAOKE_PYPPETEER_DISABLE_EXTENSIONS)
-        cls.hide_scrollbars = settings.get('DAOKE_PYPPETEER_HIDE_SCROLLBARS', DAOKE_PYPPETEER_HIDE_SCROLLBARS)
-        cls.mute_audio = settings.get('DAOKE_PYPPETEER_MUTE_AUDIO', DAOKE_PYPPETEER_MUTE_AUDIO)
-        cls.no_sandbox = settings.get('DAOKE_PYPPETEER_NO_SANDBOX', DAOKE_PYPPETEER_NO_SANDBOX)
-        cls.disable_setuid_sandbox = settings.get('DAOKE_PYPPETEER_DISABLE_SETUID_SANDBOX',
-                                                  DAOKE_PYPPETEER_DISABLE_SETUID_SANDBOX)
-        cls.disable_gpu = settings.get('DAOKE_PYPPETEER_DISABLE_GPU', DAOKE_PYPPETEER_DISABLE_GPU)
-        cls.download_timeout = settings.get('DAOKE_PYPPETEER_DOWNLOAD_TIMEOUT',
-                                            settings.get('DOWNLOAD_TIMEOUT', DAOKE_PYPPETEER_DOWNLOAD_TIMEOUT))
-        cls.ignore_resource_types = settings.get('DAOKE_PYPPETEER_IGNORE_RESOURCE_TYPES',
-                                                 DAOKE_PYPPETEER_IGNORE_RESOURCE_TYPES)
-        cls.screenshot = settings.get('DAOKE_PYPPETEER_SCREENSHOT', DAOKE_PYPPETEER_SCREENSHOT)
-        cls.pretend = settings.get('DAOKE_PYPPETEER_PRETEND', DAOKE_PYPPETEER_PRETEND)
-        cls.sleep = settings.get('DAOKE_PYPPETEER_SLEEP', DAOKE_PYPPETEER_SLEEP)
-        cls.enable_request_interception = settings.getbool('DAOKE_ENABLE_REQUEST_INTERCEPTION',
-                                                           DAOKE_ENABLE_REQUEST_INTERCEPTION)
+        cls.window_width = settings.get('AROAY_PYPPETEER_WINDOW_WIDTH', AROAY_PYPPETEER_WINDOW_WIDTH)
+        cls.window_height = settings.get('AROAY_PYPPETEER_WINDOW_HEIGHT', AROAY_PYPPETEER_WINDOW_HEIGHT)
+        cls.default_user_agent = settings.get('AROAY_PYPPETEER_DEFAULT_USER_AGENT',
+                                              AROAY_PYPPETEER_DEFAULT_USER_AGENT)
+        cls.headless = settings.get('AROAY_PYPPETEER_HEADLESS', AROAY_PYPPETEER_HEADLESS)
+        cls.dumpio = settings.get('AROAY_PYPPETEER_DUMPIO', AROAY_PYPPETEER_DUMPIO)
+        cls.ignore_https_errors = settings.get('AROAY_PYPPETEER_IGNORE_HTTPS_ERRORS',
+                                               AROAY_PYPPETEER_IGNORE_HTTPS_ERRORS)
+        cls.slow_mo = settings.get('AROAY_PYPPETEER_SLOW_MO', AROAY_PYPPETEER_SLOW_MO)
+        cls.ignore_default_args = settings.get('AROAY_PYPPETEER_IGNORE_DEFAULT_ARGS',
+                                               AROAY_PYPPETEER_IGNORE_DEFAULT_ARGS)
+        cls.handle_sigint = settings.get('AROAY_PYPPETEER_HANDLE_SIGINT', AROAY_PYPPETEER_HANDLE_SIGINT)
+        cls.handle_sigterm = settings.get('AROAY_PYPPETEER_HANDLE_SIGTERM', AROAY_PYPPETEER_HANDLE_SIGTERM)
+        cls.handle_sighup = settings.get('AROAY_PYPPETEER_HANDLE_SIGHUP', AROAY_PYPPETEER_HANDLE_SIGHUP)
+        cls.auto_close = settings.get('AROAY_PYPPETEER_AUTO_CLOSE', AROAY_PYPPETEER_AUTO_CLOSE)
+        cls.devtools = settings.get('AROAY_PYPPETEER_DEVTOOLS', AROAY_PYPPETEER_DEVTOOLS)
+        cls.executable_path = settings.get('AROAY_PYPPETEER_EXECUTABLE_PATH', AROAY_PYPPETEER_EXECUTABLE_PATH)
+        cls.disable_extensions = settings.get('AROAY_PYPPETEER_DISABLE_EXTENSIONS',
+                                              AROAY_PYPPETEER_DISABLE_EXTENSIONS)
+        cls.hide_scrollbars = settings.get('AROAY_PYPPETEER_HIDE_SCROLLBARS', AROAY_PYPPETEER_HIDE_SCROLLBARS)
+        cls.mute_audio = settings.get('AROAY_PYPPETEER_MUTE_AUDIO', AROAY_PYPPETEER_MUTE_AUDIO)
+        cls.no_sandbox = settings.get('AROAY_PYPPETEER_NO_SANDBOX', AROAY_PYPPETEER_NO_SANDBOX)
+        cls.disable_setuid_sandbox = settings.get('AROAY_PYPPETEER_DISABLE_SETUID_SANDBOX',
+                                                  AROAY_PYPPETEER_DISABLE_SETUID_SANDBOX)
+        cls.disable_gpu = settings.get('AROAY_PYPPETEER_DISABLE_GPU', AROAY_PYPPETEER_DISABLE_GPU)
+        cls.download_timeout = settings.get('AROAY_PYPPETEER_DOWNLOAD_TIMEOUT',
+                                            settings.get('DOWNLOAD_TIMEOUT', AROAY_PYPPETEER_DOWNLOAD_TIMEOUT))
+        cls.ignore_resource_types = settings.get('AROAY_PYPPETEER_IGNORE_RESOURCE_TYPES',
+                                                 AROAY_PYPPETEER_IGNORE_RESOURCE_TYPES)
+        cls.screenshot = settings.get('AROAY_PYPPETEER_SCREENSHOT', AROAY_PYPPETEER_SCREENSHOT)
+        cls.pretend = settings.get('AROAY_PYPPETEER_PRETEND', AROAY_PYPPETEER_PRETEND)
+        cls.sleep = settings.get('AROAY_PYPPETEER_SLEEP', AROAY_PYPPETEER_SLEEP)
+        cls.enable_request_interception = settings.getbool('AROAY_ENABLE_REQUEST_INTERCEPTION',
+                                                           AROAY_ENABLE_REQUEST_INTERCEPTION)
         cls.retry_enabled = settings.getbool('RETRY_ENABLED')
         cls.max_retry_times = settings.getint('RETRY_TIMES')
         cls.retry_http_codes = set(int(x) for x in settings.getlist('RETRY_HTTP_CODES'))
