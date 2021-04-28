@@ -32,7 +32,7 @@ def as_deferred(f):
     return Deferred.fromFuture(asyncio.ensure_future(f))
 
 
-logger = logging.getLogger('daoke.scrapy_pyppeteer')
+logger = logging.getLogger('daoke.aroay_pyppeteer')
 
 
 class PyppeteerMiddleware(object):
@@ -89,7 +89,7 @@ class PyppeteerMiddleware(object):
         settings = crawler.settings
         logging_level = settings.get('DAOKE_PYPPETEER_LOGGING_LEVEL', DAOKE_PYPPETEER_LOGGING_LEVEL)
         logging.getLogger('websockets').setLevel(logging_level)
-        logging.getLogger('scrapy_pyppeteer').setLevel(logging_level)
+        logging.getLogger('aroay_pyppeteer').setLevel(logging_level)
 
         # init settings
         cls.window_width = settings.get('DAOKE_PYPPETEER_WINDOW_WIDTH', DAOKE_PYPPETEER_WINDOW_WIDTH)
@@ -135,13 +135,13 @@ class PyppeteerMiddleware(object):
 
     async def _process_request(self, request, spider):
         """
-        use scrapy_pyppeteer to process spider
+        use aroay_pyppeteer to process spider
         :param request:
         :param spider:
         :return:
         """
-        # get scrapy_pyppeteer meta
-        pyppeteer_meta = request.meta.get('scrapy_pyppeteer') or {}
+        # get aroay_pyppeteer meta
+        pyppeteer_meta = request.meta.get('aroay_pyppeteer') or {}
         logger.debug('pyppeteer_meta %s', pyppeteer_meta)
         if not isinstance(pyppeteer_meta, dict) or len(pyppeteer_meta.keys()) == 0:
             return
@@ -253,8 +253,8 @@ class PyppeteerMiddleware(object):
                 }
                 # handle resource types
                 _ignore_resource_types = self.ignore_resource_types
-                if request.meta.get('scrapy_pyppeteer', {}).get('ignore_resource_types') is not None:
-                    _ignore_resource_types = request.meta.get('scrapy_pyppeteer', {}).get('ignore_resource_types')
+                if request.meta.get('aroay_pyppeteer', {}).get('ignore_resource_types') is not None:
+                    _ignore_resource_types = request.meta.get('aroay_pyppeteer', {}).get('ignore_resource_types')
                 if pu_request.resourceType in _ignore_resource_types:
                     await pu_request.abort()
                 else:
@@ -279,7 +279,7 @@ class PyppeteerMiddleware(object):
                 options=options
             )
         except (PageError, TimeoutError):
-            logger.error('error rendering url %s using scrapy_pyppeteer', request.url)
+            logger.error('error rendering url %s using aroay_pyppeteer', request.url)
             await page.close()
             await browser.close()
             return self._retry(request, 504, spider)
@@ -339,12 +339,12 @@ class PyppeteerMiddleware(object):
                 screenshot = BytesIO(screenshot)
 
         # close page and browser
-        logger.debug('close scrapy_pyppeteer')
+        logger.debug('close aroay_pyppeteer')
         await page.close()
         await browser.close()
 
         if not response:
-            logger.error('get null response by scrapy_pyppeteer of url %s', request.url)
+            logger.error('get null response by aroay_pyppeteer of url %s', request.url)
 
         # Necessary to bypass the compression middleware (?)
         response.headers.pop('content-encoding', None)
@@ -364,7 +364,7 @@ class PyppeteerMiddleware(object):
 
     def process_request(self, request, spider):
         """
-        process request using scrapy_pyppeteer
+        process request using aroay_pyppeteer
         :param request:
         :param spider:
         :return:
