@@ -215,8 +215,9 @@ class PyppeteerMiddleware(object):
         browser = await launch(options)
         page = await browser.newPage()
         await page.setViewport({'width': self.window_width, 'height': self.window_height})
-        # 验证用户名和密码
-        await page.authenticate({'username': self.username, 'password': self.password})
+        # 如果有用户名和密码，验证用户名和密码
+        if hasattr(self, "username") and hasattr(self, "password"):
+            await page.authenticate({'username': self.username, 'password': self.password})
 
         if _pretend:
             _default_user_agent = self.default_user_agent
