@@ -9,8 +9,7 @@ class JavdbSpider(scrapy.Spider):
 
     def start_requests(self):
         yield PyppeteerRequest("http://www.httpbin.org/ip",
-                               callback=self.parse,
-                               proxy="http://hwplargespeedproxies:EwftFeTD4QF4k0sZ@3.224.197.3:31112")
+                               callback=self.parse)
 
     def parse(self, response):
         print(response.text)
