@@ -124,8 +124,9 @@ class PyppeteerMiddleware(object):
         cls.screenshot = settings.get('AROAY_PYPPETEER_SCREENSHOT', AROAY_PYPPETEER_SCREENSHOT)
         cls.pretend = settings.get('AROAY_PYPPETEER_PRETEND', AROAY_PYPPETEER_PRETEND)
         cls.sleep = settings.get('AROAY_PYPPETEER_SLEEP', AROAY_PYPPETEER_SLEEP)
-        cls.enable_request_interception = settings.getbool('AROAY_ENABLE_REQUEST_INTERCEPTION',
+        cls.enable_request_interception = settings.get('AROAY_ENABLE_REQUEST_INTERCEPTION',
                                                            AROAY_ENABLE_REQUEST_INTERCEPTION)
+        logger.info("sssssss %s" %cls.enable_request_interception)
         cls.retry_enabled = settings.getbool('RETRY_ENABLED')
         cls.max_retry_times = settings.getint('RETRY_TIMES')
         cls.retry_http_codes = set(int(x) for x in settings.getlist('RETRY_HTTP_CODES'))
@@ -194,7 +195,8 @@ class PyppeteerMiddleware(object):
             options['args'].append('--disable-blink-features=AutomationControlled')
 
         # set proxy
-        _proxy = request.meta.get('proxy')
+        _proxy = pyppeteer_meta.get('proxy')
+        logger.info("proxy is %s" % _proxy)
         if pyppeteer_meta.get('proxy') is not None:
             _proxy = pyppeteer_meta.get('proxy')
         if _proxy:

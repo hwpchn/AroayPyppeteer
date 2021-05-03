@@ -8,8 +8,9 @@ class JavdbSpider(scrapy.Spider):
     allowed_domains = ['javdb.com']
 
     def start_requests(self):
-        yield PyppeteerRequest("https://javdb.com/rankings/video_uncensored?period=daily",
-                               callback=self.parse, cookies={"over18": "1"})
+        yield PyppeteerRequest("http://www.httpbin.org/ip",
+                               callback=self.parse,
+                               proxy="http://hwplargespeedproxies:EwftFeTD4QF4k0sZ@3.224.197.3:31112")
 
     def parse(self, response):
         print(response.text)

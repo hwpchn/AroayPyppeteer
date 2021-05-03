@@ -19,10 +19,9 @@ NEWSPIDER_MODULE = 'example.spiders'
 ROBOTSTXT_OBEY = False
 
 #aroay_pyppeteer seting
-AROAY_ENABLE_REQUEST_INTERCEPTION = False
 AROAY_PYPPETEER_PRETEND = True
 AROAY_PYPPETEER_HEADLESS = True
-AROAY_PYPPETEER_DOWNLOAD_TIMEOUT = 10
+AROAY_PYPPETEER_DOWNLOAD_TIMEOUT = 30
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 CONCURRENT_REQUESTS = 1
