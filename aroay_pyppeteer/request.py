@@ -8,7 +8,8 @@ class PyppeteerRequest(Request):
     """
 
     def __init__(self, url, callback=None, wait_until=None, wait_for=None, script=None, proxy=None, click=None,
-                 sleep=None, timeout=None, ignore_resource_types=None, pretend=None, screenshot=None, meta=None, *args,
+                 sleep=None, timeout=None, ignore_resource_types=None, pretend=None, screenshot=None, meta=None,
+                 wait_for_next=None, *args,
                  **kwargs):
         """
         :param url: request url
@@ -41,6 +42,8 @@ class PyppeteerRequest(Request):
         self.proxy = pyppeteer_meta.get('proxy') if pyppeteer_meta.get('proxy') is not None else proxy
         self.pretend = pyppeteer_meta.get('pretend') if pyppeteer_meta.get('pretend') is not None else pretend
         self.timeout = pyppeteer_meta.get('timeout') if pyppeteer_meta.get('timeout') is not None else timeout
+        self.wait_for_next = pyppeteer_meta.get('wait_for_next') if pyppeteer_meta.get(
+            'wait_for_next') is not None else wait_for_next
         self.ignore_resource_types = pyppeteer_meta.get('ignore_resource_types') if pyppeteer_meta.get(
             'ignore_resource_types') is not None else ignore_resource_types
         self.screenshot = pyppeteer_meta.get('screenshot') if pyppeteer_meta.get(
@@ -55,6 +58,8 @@ class PyppeteerRequest(Request):
         pyppeteer_meta['pretend'] = self.pretend
         pyppeteer_meta['timeout'] = self.timeout
         pyppeteer_meta['screenshot'] = self.screenshot
+        pyppeteer_meta['click'] = self.click
         pyppeteer_meta['ignore_resource_types'] = self.ignore_resource_types
+        pyppeteer_meta['wait_for_next'] = self.wait_for_next
 
         super().__init__(url, callback, meta=meta, *args, **kwargs)

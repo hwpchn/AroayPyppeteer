@@ -125,8 +125,8 @@ class PyppeteerMiddleware(object):
         cls.pretend = settings.get('AROAY_PYPPETEER_PRETEND', AROAY_PYPPETEER_PRETEND)
         cls.sleep = settings.get('AROAY_PYPPETEER_SLEEP', AROAY_PYPPETEER_SLEEP)
         cls.enable_request_interception = settings.get('AROAY_ENABLE_REQUEST_INTERCEPTION',
-                                                           AROAY_ENABLE_REQUEST_INTERCEPTION)
-        logger.info("sssssss %s" %cls.enable_request_interception)
+                                                       AROAY_ENABLE_REQUEST_INTERCEPTION)
+        logger.info("sssssss %s" % cls.enable_request_interception)
         cls.retry_enabled = settings.getbool('RETRY_ENABLED')
         cls.max_retry_times = settings.getint('RETRY_TIMES')
         cls.retry_http_codes = set(int(x) for x in settings.getlist('RETRY_HTTP_CODES'))
@@ -313,14 +313,29 @@ class PyppeteerMiddleware(object):
             _click = pyppeteer_meta.get('click')
             logger.debug('page.click(%s)', _click)
             try:
-                logger.debug('waitForSelector %s', _click)
-                clickSeeAllWorkspaces = await page.waitForSelector(_click)
+                logger.debug('waitForXPath %s', _click)
+                clickSeeAllWorkspaces = await page.waitForXPath(_click)
             except TimeoutError:
-                logger.error('error waitForSelector %s of %s', _click, request.url)
+                logger.error('error waitForXPath %s of %s', _click, request.url)
                 await page.close()
                 await browser.close()
                 return self._retry(request, 504, spider)
             await clickSeeAllWorkspaces.click()
+            await page.waitForNavigation()
+        # wait for next page dom loaded
+        if pyppeteer_meta.get('wait_for_next'):
+            _wait_for_next = pyppeteer_meta.get('wait_for_next')
+            try:
+                logger.debug('waiting for %s', _wait_for_next)
+                if isinstance(_wait_for_next, dict):
+                    await page.waitFor(**_wait_for_next)
+                else:
+                    await page.waitFor(_wait_for_next)
+            except TimeoutError:
+                logger.error('error _wait_for_next %s of %s', _wait_for_next, request.url)
+                await page.close()
+                await browser.close()
+                return self._retry(request, 504, spider)
 
         # sleep
         _sleep = self.sleep
