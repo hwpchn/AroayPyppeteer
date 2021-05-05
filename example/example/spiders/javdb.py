@@ -15,5 +15,5 @@ class JavdbSpider(scrapy.Spider):
             callback=self.parse)
 
 
-def parse(self, response):
-    print(response.text)
+    def parse(self, response):
+        print(response.text)
