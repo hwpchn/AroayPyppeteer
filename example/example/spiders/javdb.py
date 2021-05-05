@@ -14,5 +14,6 @@ class JavdbSpider(scrapy.Spider):
                 "//*[@id='portfolio']/li/div/p[5]/a"), wait_for_next="#review-section",
             callback=self.parse)
 
-    def parse(self, response):
-        print(response.text)
+
+def parse(self, response):
+    print(response.text)
