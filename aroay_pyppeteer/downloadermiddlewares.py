@@ -321,7 +321,13 @@ class PyppeteerMiddleware(object):
                 await browser.close()
                 return self._retry(request, 504, spider)
             await clickSeeAllWorkspaces.click()
-            await page.waitForNavigation()
+            try:
+                await page.waitForNavigation()
+            except TimeoutError:
+                logger.error('error waitForXPath %s of %s', _click, request.url)
+                await page.close()
+                await browser.close()
+                return self._retry(request, 504, spider)
         # wait for next page dom loaded
         if pyppeteer_meta.get('wait_for_next'):
             _wait_for_next = pyppeteer_meta.get('wait_for_next')
